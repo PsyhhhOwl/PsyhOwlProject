@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <meta name="theme-color" content="#0a1020" />
+  <title>Совёнок — психологический друг</title>
+  <script src="https://telegram.org/js/telegram-web-app.js?63"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+
+  <div id="loading" class="loading-screen">
+    <div class="mini-owl">🦉</div>
+    <div class="loader-ring"></div>
+    <p>Совёнок просыпается…</p>
+  </div>
+
+  <div id="fatal" class="fatal hidden">
+    <div class="fatal-card glass">
+      <div class="mini-owl">🦉</div>
+      <h2>Открой меня в Telegram</h2>
+      <p id="fatalText">Мини‑приложение использует безопасную авторизацию Telegram.</p>
+    </div>
+  </div>
+
+  <main id="app" class="app hidden">
+    <header class="topbar">
+      <button class="brand" data-nav="home" aria-label="На главную">
+        <span class="brand-mark">С</span>
+        <span><b>Совёнок</b><small>рядом, когда важно</small></span>
+      </button>
+      <button id="profileButton" class="avatar-btn" data-nav="profile" aria-label="Профиль">
+        <span id="avatarInitial">С</span>
+        <i id="accessDot"></i>
+      </button>
+    </header>
+
+    <section id="paywall" class="paywall hidden">
+      <div class="paywall-hero">
+        <div class="stars"></div>
+        <div class="owl-stage" aria-hidden="true">
+          <div class="halo"></div>
+          <svg class="owl" viewBox="0 0 320 320" role="img">
+            <defs>
+              <radialGradient id="bodyG" cx="50%" cy="35%" r="70%">
+                <stop offset="0%" stop-color="#b8b5ff"/>
+                <stop offset="55%" stop-color="#726bdb"/>
+                <stop offset="100%" stop-color="#34315f"/>
+              </radialGradient>
+              <linearGradient id="wingG" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#6f69cc"/>
+                <stop offset="1" stop-color="#272644"/>
+              </linearGradient>
+            </defs>
+            <path d="M92 87 61 48l54 23M228 87l31-39-54 23" fill="#5955a4"/>
+            <ellipse cx="160" cy="175" rx="98" ry="112" fill="url(#bodyG)"/>
+            <path d="M86 147c-38 25-37 91 8 121 9-45 29-76 53-95-18-19-39-31-61-26Z" fill="url(#wingG)"/>
+            <path d="M234 147c38 25 37 91-8 121-9-45-29-76-53-95 18-19 39-31 61-26Z" fill="url(#wingG)"/>
+            <circle cx="124" cy="135" r="38" fill="#e9e6ff"/>
+            <circle cx="196" cy="135" r="38" fill="#e9e6ff"/>
+            <circle cx="127" cy="139" r="17" fill="#17182b"/>
+            <circle cx="193" cy="139" r="17" fill="#17182b"/>
+            <circle cx="132" cy="133" r="5" fill="#fff"/>
+            <circle cx="198" cy="133" r="5" fill="#fff"/>
+            <path d="m160 153-15 18h30Z" fill="#d9aa5f"/>
+            <path d="M129 207c18 13 44 13 62 0" fill="none" stroke="#d6d2ff" stroke-width="7" stroke-linecap="round" opacity=".55"/>
+          </svg>
+        </div>
+
+        <div class="eyebrow">ТВОЁ СПОКОЙНОЕ МЕСТО</div>
+        <h1>Привет. Я <em>Совёнок</em>.</h1>
+        <p class="lead">Голосовой AI‑собеседник, который помогает услышать себя, разобраться в чувствах и не оставаться с тяжёлыми мыслями один на один.</p>
+      </div>
+
+      <div class="benefits-grid">
+        <article class="benefit glass"><span>◌</span><div><b>Голосовой диалог</b><small>говори так, как есть — я выслушаю</small></div></article>
+        <article class="benefit glass"><span>✦</span><div><b>Осмысленные ответы</b><small>КПТ, ACT, DBT и бережное слушание</small></div></article>
+        <article class="benefit glass"><span>☾</span><div><b>В любое время</b><small>когда хочется выговориться или разобраться</small></div></article>
+        <article class="benefit glass"><span>⌁</span><div><b>Личное пространство</b><small>история диалогов и дневник состояния</small></div></article>
+      </div>
+
+      <div class="price-card glass">
+        <div class="price-head">
+          <div><small>ПОЛНЫЙ ДОСТУП НА 30 ДНЕЙ</small><strong id="priceText">12 990 ₽</strong></div>
+          <span class="premium-pill">Premium</span>
+        </div>
+        <div class="price-lines">
+          <p><i>✓</i> Голосовые и текстовые диалоги без дневного лимита интерфейса</p>
+          <p><i>✓</i> История бесед, эмоциональный дневник и практики</p>
+          <p><i>✓</i> Персональный контекст разговора</p>
+        </div>
+        <button id="payButton" class="primary-btn shine">Оформить подписку <span>→</span></button>
+        <button id="checkPaymentButton" class="ghost-btn">Я уже оплатил — проверить доступ</button>
+        <p class="legal-note">Совёнок не является медицинской услугой и не заменяет врача или психотерапевта. При угрозе жизни нужна срочная помощь людей и экстренных служб.</p>
+      </div>
+    </section>
+
+    <section id="home" class="page hidden">
+      <div class="welcome-row">
+        <div>
+          <div class="eyebrow">ДОБРО ПОЖАЛОВАТЬ</div>
+          <h1 id="welcomeTitle">Как ты сегодня?</h1>
+          <p>Не нужно подбирать правильные слова.</p>
+        </div>
+        <div class="status-chip"><i></i><span>Совёнок рядом</span></div>
+      </div>
+
+      <article class="voice-card glass">
+        <div class="voice-orbit">
+          <div class="voice-glow"></div>
+          <button id="voiceButton" class="voice-button" aria-label="Начать запись">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3Zm5-3a1 1 0 1 1 2 0 7 7 0 0 1-6 6.92V20h3a1 1 0 1 1 0 2H8a1 1 0 1 1 0-2h3v-2.08A7 7 0 0 1 5 11a1 1 0 1 1 2 0 5 5 0 0 0 10 0Z"/></svg>
+          </button>
+        </div>
+        <h2 id="voiceTitle">Нажми и расскажи</h2>
+        <p id="voiceHint">Можно говорить столько, сколько нужно. После записи Совёнок ответит голосом.</p>
+        <div id="voiceTimer" class="voice-timer hidden"><span></span><b>00:00</b></div>
+      </article>
+
+      <div class="section-head"><h3>С чего начнём?</h3><button data-nav="chat">Открыть чат</button></div>
+      <div class="prompt-scroll">
+        <button class="prompt-card" data-prompt="Мне тревожно, и я хочу немного успокоиться."><span>🌙</span><b>Мне тревожно</b><small>разберём, что происходит</small></button>
+        <button class="prompt-card" data-prompt="Мне нужно просто выговориться. Пожалуйста, послушай меня."><span>☁️</span><b>Хочу выговориться</b><small>без оценок и спешки</small></button>
+        <button class="prompt-card" data-prompt="Помоги мне разобраться в моих чувствах."><span>🫧</span><b>Понять чувства</b><small>назвать и распутать</small></button>
+        <button class="prompt-card" data-prompt="Мне сложно в отношениях. Помоги посмотреть на ситуацию спокойнее."><span>🤍</span><b>Про отношения</b><small>увидеть ситуацию яснее</small></button>
+      </div>
+
+      <div class="section-head"><h3>Короткий check‑in</h3><small>10 секунд</small></div>
+      <article class="mood-card glass">
+        <div><b>Какое у тебя состояние сейчас?</b><p>Отметка помогает замечать динамику, а не оценивать себя.</p></div>
+        <div id="moodScale" class="mood-scale">
+          <button data-score="2">😞</button><button data-score="4">😕</button><button data-score="6">😐</button><button data-score="8">🙂</button><button data-score="10">😌</button>
+        </div>
+      </article>
+    </section>
+
+    <section id="chat" class="page chat-page hidden">
+      <div class="page-title"><div><div class="eyebrow">ЛИЧНЫЙ ДИАЛОГ</div><h1>Разговор с Совёнком</h1></div><button id="speakToggle" class="icon-toggle active" title="Озвучивать ответы">🔊</button></div>
+      <div id="messages" class="messages"></div>
+      <div id="typing" class="typing hidden"><span></span><span></span><span></span><small>Совёнок думает</small></div>
+      <div class="composer glass">
+        <textarea id="chatInput" rows="1" placeholder="Расскажи, что происходит…"></textarea>
+        <button id="chatMic" class="composer-icon" aria-label="Записать голос">🎙</button>
+        <button id="sendButton" class="send-btn" aria-label="Отправить">↑</button>
+      </div>
+    </section>
+
+    <section id="practices" class="page hidden">
+      <div class="page-title"><div><div class="eyebrow">БЕРЕЖНЫЕ ИНСТРУМЕНТЫ</div><h1>Практики</h1></div></div>
+      <article class="practice-feature glass">
+        <div class="practice-icon">◌</div><div><small>2 МИНУТЫ</small><h2>Вернуться в настоящий момент</h2><p>Мягкая grounding‑практика, когда мысли разгоняются быстрее тебя.</p><button class="secondary-btn practice-start" data-practice="grounding">Начать</button></div>
+      </article>
+      <div class="practice-grid">
+        <article class="practice-card glass"><span>☾</span><small>3–5 минут</small><h3>Перед сном</h3><p>Снизить внутреннее напряжение.</p><button class="practice-start" data-practice="sleep">Открыть →</button></article>
+        <article class="practice-card glass"><span>〰</span><small>2 минуты</small><h3>Дыхание 4–6</h3><p>Спокойный ритм с длинным выдохом.</p><button class="practice-start" data-practice="breath">Открыть →</button></article>
+        <article class="practice-card glass"><span>✦</span><small>5 минут</small><h3>Разговор с мыслью</h3><p>Отделить факт от автоматической мысли.</p><button class="practice-start" data-practice="thought">Открыть →</button></article>
+        <article class="practice-card glass"><span>♡</span><small>3 минуты</small><h3>Самосострадание</h3><p>Поддержать себя без обесценивания.</p><button class="practice-start" data-practice="compassion">Открыть →</button></article>
+      </div>
+    </section>
+
+    <section id="journal" class="page hidden">
+      <div class="page-title"><div><div class="eyebrow">ЗАМЕЧАТЬ, А НЕ СУДИТЬ</div><h1>Дневник состояния</h1></div></div>
+      <article class="journal-entry glass">
+        <label>Как тебе сейчас?</label>
+        <input id="journalRange" type="range" min="1" max="10" value="6" />
+        <div class="range-label"><span>тяжело</span><b id="rangeValue">6 / 10</b><span>спокойно</span></div>
+        <label for="journalNote">Что сейчас особенно занимает мысли?</label>
+        <textarea id="journalNote" placeholder="Можно оставить несколько слов…"></textarea>
+        <button id="saveMoodButton" class="primary-btn">Сохранить запись</button>
+      </article>
+      <div class="section-head"><h3>Последние отметки</h3></div>
+      <div id="moodHistory" class="mood-history glass"><p class="muted">Здесь появится твоя динамика.</p></div>
+    </section>
+
+    <section id="profile" class="page hidden">
+      <div class="profile-hero">
+        <div class="profile-avatar" id="profileAvatar">С</div>
+        <h1 id="profileName">Профиль</h1>
+        <p id="profileUsername"></p>
+        <span id="subscriptionBadge" class="subscription-badge">Premium</span>
+      </div>
+      <div class="settings-list glass">
+        <button id="subscriptionRow"><span class="setting-icon">✦</span><div><b>Подписка</b><small id="subscriptionText">активна</small></div><em>›</em></button>
+        <button data-nav="journal"><span class="setting-icon">◌</span><div><b>Дневник</b><small>состояние и заметки</small></div><em>›</em></button>
+        <button data-nav="practices"><span class="setting-icon">☾</span><div><b>Практики</b><small>короткие упражнения</small></div><em>›</em></button>
+        <button id="supportButton"><span class="setting-icon">?</span><div><b>Поддержка</b><small>если что-то работает не так</small></div><em>›</em></button>
+      </div>
+      <article class="disclaimer glass"><b>О безопасности</b><p>Совёнок — AI‑сервис психологической поддержки, а не врач и не экстренная служба. Он не ставит диагнозы и не назначает лечение. Если существует непосредственная угроза жизни или здоровью, обратись к людям рядом и в местную экстренную службу.</p></article>
+      <button id="adminOpenButton" class="admin-entry hidden">Открыть админ‑панель</button>
+    </section>
+
+    <section id="admin" class="page hidden">
+      <div class="page-title"><div><div class="eyebrow">УПРАВЛЕНИЕ</div><h1>Админ‑панель</h1></div><button data-nav="profile" class="close-circle">×</button></div>
+      <div id="adminStats" class="admin-stats"></div>
+      <article class="admin-tools glass">
+        <h3>Быстрое действие</h3>
+        <input id="adminTgId" inputmode="numeric" placeholder="Telegram ID пользователя" />
+        <div class="admin-action-grid">
+          <button data-admin-action="grant">+ 30 дней</button>
+          <button data-admin-action="free">Free / off</button>
+          <button data-admin-action="addAdmin">Сделать админом</button>
+          <button data-admin-action="removeAdmin">Убрать админа</button>
+          <button data-admin-action="revoke">Отозвать доступ</button>
+          <button data-admin-action="block">Block / off</button>
+        </div>
+      </article>
+      <div class="section-head"><h3>Пользователи</h3><button id="refreshAdmin">Обновить</button></div>
+      <div id="adminUsers" class="admin-users"></div>
+    </section>
+
+    <nav id="bottomNav" class="bottom-nav glass hidden">
+      <button data-nav="home" class="active"><span>⌂</span><small>Главная</small></button>
+      <button data-nav="chat"><span>◌</span><small>Диалог</small></button>
+      <button data-nav="practices"><span>✦</span><small>Практики</small></button>
+      <button data-nav="journal"><span>⌁</span><small>Дневник</small></button>
+      <button data-nav="profile"><span>○</span><small>Профиль</small></button>
+    </nav>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <div id="practiceModal" class="modal hidden">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-card glass">
+      <button class="modal-close" data-close-modal>×</button>
+      <div id="practiceBody"></div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
